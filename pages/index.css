@@ -1,0 +1,21 @@
+@import url("../vendor/normalize.css");
+@import url("../vendor/fonts.css");
+@import url("../blocks/page.css");
+@import url("../blocks/header.css");
+@import url("../blocks/content.css");
+@import url("../blocks/footer.css");
+@import url("../blocks/profile.css");
+@import url("../blocks/cards.css");
+@import url("../blocks/card.css");
+
+.main__content {
+  margin: 0 auto;
+  width: 880px;
+}
+
+.footer {
+  color: #545454;
+  width: 318px;
+  height: 18px;
+  margin: 18px 0 18px;
+}
