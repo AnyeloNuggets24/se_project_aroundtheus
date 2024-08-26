@@ -1,23 +1,16 @@
-.card__list {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: repeat(auto-fit, 282px);
-  grid-gap: 20px 17px;
-  padding: 0;
-  margin: 0;
-}
-
 .card {
   display: flex;
   flex-direction: column;
   list-style: none;
   border-radius: 10px;
   background-color: white;
+  max-width: 282px;
+  margin: 0 auto;
 }
 
 .card__image {
   height: 282px;
-  width: 282px;
+  max-width: 282px;
 }
 
 .card__description {
@@ -47,9 +40,4 @@
   height: 18px;
   width: 21px;
   border: none;
-}
-@media and (max-width: 568px) {
-  .card__list {
-    padding: 15px 0 18px;
-  }
 }
