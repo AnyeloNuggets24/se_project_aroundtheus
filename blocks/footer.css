@@ -1,6 +1,10 @@
 .footer {
   color: #545454;
-  width: 318px;
+  padding: 18px 0 0;
+}
+
+.footer__copyright {
+  max-width: 318px;
   height: 18px;
-  margin: 18px 0 18px;
+  margin: 0;
 }
