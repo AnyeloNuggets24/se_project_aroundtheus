@@ -26,6 +26,11 @@
   height: 24px;
   width: 24px;
   grid-area: button;
+  border: 1px solid rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+.profile__edit-button:hover {
+  color: white;
 }
 
 .profile__add-button {
@@ -33,6 +38,12 @@
   height: 50px;
   width: 150px;
   margin-left: auto;
+  border: 2px solid rgba(255, 255, 255, 1);
+  cursor: pointer;
+}
+
+.profile__add-button:hover {
+  color: white;
 }
 
 .profile__description {
@@ -70,12 +81,10 @@
   .profile__description {
     width: 100%;
     text-align: center;
-    margin-top: 14px;
   }
 
   .profile__add-button {
     margin: 0;
     width: 100%;
-    margin-top: 36px;
   }
 }

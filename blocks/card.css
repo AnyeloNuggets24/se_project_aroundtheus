@@ -3,6 +3,7 @@
   flex-direction: column;
   list-style: none;
   border-radius: 10px;
+  overflow: hidden;
   background-color: white;
   max-width: 282px;
   margin: 0 auto;
@@ -40,8 +41,9 @@
   height: 18px;
   width: 21px;
   border: none;
+  cursor: pointer;
 }
 
 .card__like-button:hover {
-  background-color: #fff;
+  opacity: 0.5s;
 }
