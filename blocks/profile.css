@@ -80,6 +80,7 @@
     font-size: 22px;
     max-width: 196px;
     grid-area: title;
+    line-height: 22px;
   }
 
   .profile__edit-button {
@@ -88,12 +89,13 @@
   }
 }
 
-@media screen and (max-width: 570px) {
+@media screen and (max-width: 680px) {
   .profile {
     display: flex;
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
+    padding-bottom: 0;
   }
   .profile__image {
     max-width: 120px;
