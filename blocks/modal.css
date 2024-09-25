@@ -1,0 +1,87 @@
+.modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: black;
+  z-index: 999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 19px;
+}
+
+.modal__oppend {
+}
+
+.modal__heading {
+  width: 100%;
+  height: 23px;
+  color: #000;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 900;
+  line-height: normal;
+  margin: 0 0 54px;
+}
+
+.modal__container {
+  position: relative;
+  padding: 36px;
+  background-color: #fff;
+  border-radius: 10px;
+  margin: auto;
+  max-width: 430px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.modal__input {
+  width: 100%;
+  height: 14px;
+  color: #000;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: #000;
+  border-left: #000;
+  border-right: #000;
+  padding-bottom: 13px;
+  margin-bottom: 30px;
+}
+
+.modal__button {
+  width: 100%;
+  height: 50.152px;
+  border-radius: 2px;
+  background: #000;
+  color: #fff;
+  margin-top: 18px;
+}
+
+.modal__close {
+  border: none;
+  position: absolute;
+  bottom: calc(100% + 5px);
+  left: calc(100% + 5px);
+  height: 40px;
+  width: 40px;
+  background-image: url("../images/Close\ Icon.svg");
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-size: contain;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 630px) {
+  .modal {
+    padding: 0 19px;
+  }
+}
