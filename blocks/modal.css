@@ -7,13 +7,14 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: black;
   z-index: 999;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: none;
   padding: 0 19px;
 }
 
 .modal__oppend {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .modal__heading {
