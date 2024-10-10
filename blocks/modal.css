@@ -11,7 +11,7 @@
   padding: 0 19px;
 }
 
-.modal__oppend {
+.modal_opened {
   display: flex;
   justify-content: center;
   align-items: center;
