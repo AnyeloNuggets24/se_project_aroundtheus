@@ -31,10 +31,10 @@ const profileEditButton = document.querySelector("#profile__edit-button");
 const profileEditModal = document.querySelector("#profile__edit-modal");
 const profileEditCloseButton = profileEditModal.querySelector(".modal__close");
 const profileTitle = document.querySelector(".profile__title");
-const profileDescription = document.querySelector(".profile__Description");
+const profileDescription = document.querySelector(".profile__description");
 const profileTitleInput = document.querySelector("#profile-title-input");
 const profileDescriptionInput = document.querySelector(
-  "#profile-Description-input"
+  "#profile-description-input"
 );
 
 const profileEditForm = profileEditModal.querySelector(".modal__form");
@@ -53,6 +53,7 @@ function getCardElement(cardData) {
   const cardImageEl = cardElement.querySelector(".card__image");
   const cardTitleEl = cardElement.querySelector(".card__title");
   cardTitleEl.textContent = cardData.name;
+  cardImageEl.src = cardData.link;
   return cardElement;
 }
 

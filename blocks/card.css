@@ -11,7 +11,7 @@
 
 .card__image {
   height: 282px;
-  max-width: 282px;
+  width: 282px;
 }
 
 .card__description {
