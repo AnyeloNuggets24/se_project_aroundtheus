@@ -113,4 +113,10 @@
     text-align: left;
     margin-bottom: 45px;
   }
+
+  .modal__button {
+    width: 100%;
+    height: 46px;
+    border-radius: 2px;
+  }
 }
