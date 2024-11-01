@@ -58,7 +58,7 @@ const closeModal = (modal) => {
 // };
 
 const openModal = (modal) => {
-  profileEditModal.classList.add("modal_opened");
+  modal.classList.add("modal_opened");
 };
 
 function handleProfileFormSubmit(evt) {
@@ -85,6 +85,11 @@ profileCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
 profileSubmitButton.addEventListener("submit", () => handleProfileFormSubmit);
+profileEditButton.addEventListener("click", () => {
+  nameInput.value = profileTitle.textContent;
+  jobInput.value = profileDescription.textContent;
+  openModal(profileEditModal);
+});
 
 //add new card button
 
