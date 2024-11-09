@@ -45,6 +45,23 @@
   cursor: pointer;
 }
 
+.card__like-button_active {
+  background: transparent url(../images/Black_active.svg) center no-repeat;
+}
+
+.card__delete-button {
+  background: transparent url(../images/Trash_button.svg) center no-repeat;
+  width: 18px;
+  height: 19.3px;
+  position: absolute;
+  cursor: pointer;
+}
+
+.card__delete-button:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
 .card__like-button:hover {
   opacity: 0.5;
 }

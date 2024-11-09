@@ -65,13 +65,31 @@ function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
-  closeModal();
+  closeModal(profileEditModal);
+}
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  const name = cardTitleInput.value;
+  const link = cardUrlInput.value;
+  renderCard({ name, link }, cardsWrap);
+  closeModal(profileCloseButton);
 }
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImage = cardElement.querySelector(".card__image");
   const cardTitle = cardElement.querySelector(".card__title");
+  const likeButton = cardElement.querySelector(".card__like-button");
+
+  likeButton.addEventListener("click", () => {
+    likeButton.classList.toggle("card__like-button_active");
+  });
+
+  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
+  cardDeleteButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   cardImage.src = data.link;
   cardImage.alt = data.name;
@@ -94,6 +112,9 @@ profileEditButton.addEventListener("click", () => {
 //add new card button
 
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
+// addCardModalCloseButton.addEventListener("click", () =>
+// closeModal(addCardModal)
+// );
 
 initialCards.forEach((cardData) => {
   cardsWrap.append(getCardElement(cardData));
