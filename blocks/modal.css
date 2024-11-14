@@ -7,14 +7,19 @@
   background-color: rgba(0, 0, 0, 0.5);
   color: black;
   z-index: 999;
-  display: none;
   padding: 0 19px;
+  transition: visibility 0s 0.5s, opacity 0.5s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
 }
 
 .modal_opened {
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: visibility 0s, opacity 0.5s ease-in-out;
+  opacity: 1;
+  visibility: visible;
 }
 
 .modal__heading {
@@ -38,6 +43,27 @@
   max-width: 430px;
   width: 100%;
   box-sizing: border-box;
+}
+
+.modal__preview-container {
+  position: relative;
+  margin: auto;
+}
+
+.modal__image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.modal__text {
+  color: white;
+  font-family: "Inter", Arial, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  text-align: left;
+  text-underline-position: from-font;
+  text-decoration-skip-ink: none;
 }
 
 .modal__input {

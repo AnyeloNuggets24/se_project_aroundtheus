@@ -67,8 +67,16 @@
       </div>
     </div>
 
-    <!-- Add Card Modal -->
+    <!--Image modal-->
+    <div class="modal" id="image-modal">
+      <div class="modal__preview-container">
+        <img class="modal__image" />
+        <p class="modal__text"></p>
+        <button class="modal__close" type="button"></button>
+      </div>
+    </div>
 
+    <!-- Add Card Modal -->
     <div class="modal" id="add-card-modal">
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
@@ -95,20 +103,11 @@
 
     <template id="card-template">
       <li class="card">
+        <button class="card__delete-button" type="button"></button>
         <img src="" class="card__image" alt="" />
         <div class="card__description">
           <h2 class="card__title"></h2>
           <button class="card__like-button" type="button"></button>
-        </div>
-      </li>
-    </template>
-
-    <template id="card-template">
-      <li class="card">
-        <img src="" class="card__image" alt="" />
-        <div class="card__description">
-          <h2 class="card__title"></h2>
-          <button class="card__delete-button" type="button"></button>
         </div>
       </li>
     </template>
