@@ -139,8 +139,8 @@ profileCloseButton.addEventListener("click", () =>
 
 // form listener
 
-profileSubmitButton.addEventListener("submit", () => handleProfileFormSubmit);
-addCardFormElement.addEventListener("submit", () => handleAddCardFormSubmit);
+profileEditForm.addEventListener("submit", handleProfileFormSubmit);
+addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
 
 profileEditButton.addEventListener("click", () => {
   nameInput.value = profileTitle.textContent;
