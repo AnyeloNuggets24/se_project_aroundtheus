@@ -35,6 +35,7 @@ const profileEditModal = document.querySelector("#profile__edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
 const addCardCloseButton = addCardModal.querySelector(".modal__close");
 const profileEditForm = profileEditModal.querySelector(".modal__form");
+const addCardFormElement = addCardModal.querySelector(".modal__form");
 
 //Buttons and other DOM nodes
 const profileEditButton = document.querySelector(".profile__edit-button");
@@ -45,10 +46,16 @@ const profileSubmitButton = profileEditForm.querySelector(".modal__button");
 const addNewCardButton = document.querySelector(".profile__add-button");
 
 // Form Data
-const nameInput = profileEditForm.querySelector(".modal__input_type_title");
+const nameInput = profileEditForm.querySelector(".modal__input_type_name");
 const jobInput = profileEditForm.querySelector(
   ".modal__input_type_description"
 );
+const cardTitleInput = addCardFormElement.querySelector(
+  ".modal__input_type_name"
+);
+
+const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
+
 const imageModal = document.querySelector("#image-modal");
 const imageModalImgEl = imageModal.querySelector(".modal__image");
 const imageModalText = document.querySelector(".modal__text");
@@ -66,6 +73,11 @@ function openModal(modal) {
   modal.classList.add("modal_opened");
 }
 
+function renderCard(cardData, wrapper) {
+  const cardElement = getCardElement(cardData);
+  wrapper.append(cardElement);
+}
+
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
   profileTitle.textContent = nameInput.value;
@@ -79,6 +91,14 @@ function handleProfileFormSubmit(evt) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closeModal(profileCloseButton);
+}
+
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault();
+  const name = cardTitleInput.value;
+  const link = cardUrlInput.value;
+  renderCard({ name, link }, cardsWrap);
+  closeModal(addCardModal);
 }
 
 function getCardElement(data) {
@@ -116,7 +136,12 @@ profileEditButton.addEventListener("click", () => openModal(profileEditModal));
 profileCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
+
+// form listener
+
 profileSubmitButton.addEventListener("submit", () => handleProfileFormSubmit);
+addCardFormElement.addEventListener("submit", () => handleAddCardFormSubmit);
+
 profileEditButton.addEventListener("click", () => {
   nameInput.value = profileTitle.textContent;
   jobInput.value = profileDescription.textContent;
@@ -131,6 +156,4 @@ addNewCardButton.addEventListener("click", () => openModal(addCardModal));
 // closeModal(addCardModal)
 // );
 
-initialCards.forEach((cardData) => {
-  cardsWrap.append(getCardElement(cardData));
-});
+initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
