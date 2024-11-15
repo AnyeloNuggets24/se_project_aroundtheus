@@ -55,6 +55,9 @@
             placeholder="Name"
             type="text"
           />
+        </form>
+
+        <form class="modal__form">
           <input
             class="modal__input modal__input_type_description"
             name="description"
@@ -89,13 +92,16 @@
             placeholder="Name"
             type="text"
           />
-          <input
-            class="modal__input modal__input_type_url"
-            name="url"
-            id="profile-description-input"
-            placeholder="Image URL"
-            type="text"
-          />
+          <form class="modal__form" id="add-card-form">
+            <input
+              class="modal__input modal__input_type_url"
+              name="url"
+              id="profile-description-input"
+              placeholder="Image URL"
+              type="text"
+            />
+          </form>
+
           <button class="button modal__button" type="submit">Save</button>
         </form>
       </div>
