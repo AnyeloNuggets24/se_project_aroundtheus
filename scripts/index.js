@@ -51,7 +51,7 @@ const jobInput = profileEditForm.querySelector(
   ".modal__input_type_description"
 );
 const cardTitleInput = addCardFormElement.querySelector(
-  ".modal__input_type_name"
+  ".modal__input_type_title"
 );
 
 const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
@@ -83,14 +83,6 @@ function handleProfileFormSubmit(evt) {
   profileTitle.textContent = nameInput.value;
   profileDescription.textContent = jobInput.value;
   closeModal(profileEditModal);
-}
-
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
-  const name = cardTitleInput.value;
-  const link = cardUrlInput.value;
-  renderCard({ name, link }, cardsWrap);
-  closeModal(profileCloseButton);
 }
 
 function handleAddCardFormSubmit(evt) {
