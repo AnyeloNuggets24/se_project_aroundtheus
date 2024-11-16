@@ -47,7 +47,7 @@
       <div class="modal__container">
         <button class="modal__close" type="button"></button>
         <p class="modal__heading">Edit Profile</p>
-        <form class="modal__form">
+        <form class="modal__form" id="profile-form">
           <input
             class="modal__input modal__input_type_name"
             name="name"
@@ -55,9 +55,6 @@
             placeholder="Name"
             type="text"
           />
-        </form>
-
-        <form class="modal__form">
           <input
             class="modal__input modal__input_type_description"
             name="description"
@@ -73,7 +70,7 @@
     <!--Image modal-->
     <div class="modal" id="image-modal">
       <div class="modal__preview-container">
-        <img class="modal__image" />
+        <img class="modal__image" src="" alt="" />
         <p class="modal__text"></p>
         <button class="modal__close" type="button"></button>
       </div>
@@ -92,15 +89,13 @@
             placeholder="Name"
             type="text"
           />
-          <form class="modal__form" id="add-card-form">
-            <input
-              class="modal__input modal__input_type_url"
-              name="url"
-              id="profile-description-input"
-              placeholder="Image URL"
-              type="text"
-            />
-          </form>
+          <input
+            class="modal__input modal__input_type_url"
+            name="url"
+            id="profile-description-input"
+            placeholder="Image URL"
+            type="text"
+          />
 
           <button class="button modal__button" type="submit">Save</button>
         </form>
