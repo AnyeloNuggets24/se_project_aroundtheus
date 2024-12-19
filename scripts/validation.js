@@ -7,21 +7,25 @@ function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
 }
 
 function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
-  const errorMessageEl = formEl.querySelector(`#${inputEl.id}-error`);
+  const errorMessageId = `#${inputEl.id}-error`;
+  const errorMessageEl = formEl.querySelector(errorMessageId);
+  console.log(errorMessageEl);
   inputEl.classList.remove(inputErrorClass);
-  errorMessageEl.textContent = "";
   errorMessageEl.classList.remove(errorClass);
+  errorMessageEl.textContent = "";
 }
 function checkInputValidity(formEl, inputEl, options) {
   if (!inputEl.validity.valid) {
-    showInputError(formEl, inputEl, options);
+    showInputError(formEl, inputEl, inputEl.validationMessage, options);
   } else {
     hideInputError(formEl, inputEl, options);
   }
 }
 
 function hasInvalidInput(inputList) {
-  return !inputList.every((inputEl) => inputEl.validity.valid);
+  return inputList.some((inputEl) => {
+    return !inputEl.validity.valid;
+  });
 }
 
 function disabledButton(inputEls, submitButton, inactiveButtonClass) {

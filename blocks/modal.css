@@ -117,7 +117,7 @@
   flex-direction: column;
 }
 
-. .modal__input_type_error {
+.modal__input_type_error {
   border-bottom: 1px solid #f00;
 }
 
