@@ -3,6 +3,7 @@ function showInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   inputEl.classList.add(inputErrorClass);
   errorMessageEl.textContent = inputEl.validationMessage;
   errorMessageEl.classList.add(errorClass);
+  console.log(inputEl);
 }
 
 function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
@@ -11,7 +12,6 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   errorMessageEl.textContent = "";
   errorMessageEl.classList.remove(errorClass);
 }
-
 function checkInputValidity(formEl, inputEl, options) {
   if (!inputEl.validity.vaild) {
     showInputError(formEl, inputEl, options);
