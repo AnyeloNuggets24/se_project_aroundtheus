@@ -8,13 +8,11 @@ function showInputError(
   inputEl.classList.add(inputErrorClass);
   errorMessageEl.textContent = errorMessage;
   errorMessageEl.classList.add(errorClass);
-  console.log("inputError", inputEl);
 }
 
 function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   const errorMessageId = `#${inputEl.id}-error`;
   const errorMessageEl = formEl.querySelector(errorMessageId);
-  console.log(errorMessageEl);
   inputEl.classList.remove(inputErrorClass);
   errorMessageEl.classList.remove(errorClass);
   errorMessageEl.textContent = "";
