@@ -36,14 +36,12 @@ const addCardModal = document.querySelector("#add-card-modal");
 const addCardCloseButton = addCardModal.querySelector(".modal__close");
 const profileEditForm = document.forms["profile-form"];
 const cardForm = document.forms["add-card-form"];
-const addCardFormElement = addCardModal.querySelector(".modal__form");
 
 //Buttons and other DOM nodes
 const profileEditButton = document.querySelector(".profile__edit-button");
 const profileCloseButton = profileEditModal.querySelector(".modal__close");
 const profileTitle = document.querySelector(".profile__title");
 const profileDescription = document.querySelector(".profile__description");
-const profileSubmitButton = profileEditForm.querySelector(".modal__button");
 const addNewCardButton = document.querySelector(".profile__add-button");
 
 // Form Data
@@ -51,11 +49,9 @@ const nameInput = profileEditForm.querySelector(".modal__input_type_name");
 const jobInput = profileEditForm.querySelector(
   ".modal__input_type_description"
 );
-const cardTitleInput = addCardFormElement.querySelector(
-  ".modal__input_type_title"
-);
+const cardTitleInput = cardForm.querySelector(".modal__input_type_title");
 
-const cardUrlInput = addCardFormElement.querySelector(".modal__input_type_url");
+const cardUrlInput = cardForm.querySelector(".modal__input_type_url");
 
 const imageModal = document.querySelector("#image-modal");
 const imageModalImgEl = imageModal.querySelector(".modal__image");
@@ -92,7 +88,7 @@ function handleAddCardFormSubmit(evt) {
   const link = cardUrlInput.value;
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
-  addCardFormElement.reset();
+  cardForm.reset();
 }
 
 function getCardElement(data) {
@@ -126,7 +122,6 @@ function getCardElement(data) {
 //close the image modal
 imageModalCloseButton.addEventListener("click", () => closeModal(imageModal));
 
-profileEditButton.addEventListener("click", () => openModal(profileEditModal));
 profileCloseButton.addEventListener("click", () =>
   closeModal(profileEditModal)
 );
@@ -134,7 +129,7 @@ profileCloseButton.addEventListener("click", () =>
 // form listener
 
 profileEditForm.addEventListener("submit", handleProfileFormSubmit);
-addCardFormElement.addEventListener("submit", handleAddCardFormSubmit);
+cardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 profileEditButton.addEventListener("click", () => {
   nameInput.value = profileTitle.textContent;
