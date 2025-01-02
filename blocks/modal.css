@@ -177,5 +177,6 @@
 
   .modal__container {
     padding: 22px;
+    max-width: 282px;
   }
 }

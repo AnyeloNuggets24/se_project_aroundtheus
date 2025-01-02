@@ -30,6 +30,7 @@ const cardTemplate = document
   .content.querySelector(".card");
 
 // Wrappers
+const modals = document.querySelectorAll(".modal");
 const cardsWrap = document.querySelector(".cards__list");
 const profileEditModal = document.querySelector("#profile__edit-modal");
 const addCardModal = document.querySelector("#add-card-modal");
@@ -95,10 +96,19 @@ function handleAddCardFormSubmit(evt) {
 
 function handleEscape(evt) {
   if (evt.key === "Escape") {
-    const activeModal = document.querySelector("modal_opened");
+    const activeModal = document.querySelector(".modal_opened");
     closeModal(activeModal);
   }
 }
+
+const handleModelClose = (evt) => {
+  if (
+    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modal__close")
+  ) {
+    closeModal(evt.currentTarget);
+  }
+};
 
 function getCardElement(data) {
   const cardElement = cardTemplate.cloneNode(true);
@@ -128,12 +138,12 @@ function getCardElement(data) {
 
   return cardElement;
 }
-//close the image modal
-imageModalCloseButton.addEventListener("click", () => closeModal(imageModal));
 
-profileCloseButton.addEventListener("click", () =>
-  closeModal(profileEditModal)
-);
+// make sure to call the handleModalClose on line 104
+
+modals.forEach((modal) => {
+  modal.addEventListener("mousedown", handleModelClose);
+});
 
 // form listener
 
