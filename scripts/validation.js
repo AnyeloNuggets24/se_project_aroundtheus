@@ -17,11 +17,11 @@ function hideInputError(formEl, inputEl, { inputErrorClass, errorClass }) {
   errorMessageEl.classList.remove(errorClass);
   errorMessageEl.textContent = "";
 }
-function checkInputValidity(formEl, inputEl, enmus) {
+function checkInputValidity(formEl, inputEl, config) {
   if (!inputEl.validity.valid) {
-    showInputError(formEl, inputEl, inputEl.ValidationMessage, enmus);
+    showInputError(formEl, inputEl, inputEl.validationMessage, config);
   } else {
-    hideInputError(formEl, inputEl, enmus);
+    hideInputError(formEl, inputEl, config);
   }
 }
 
@@ -66,30 +66,27 @@ function toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
   }
 }
 
-function setEventListeners(
-  formEl,
-  { inputSelector, submitButtonSelector, inactiveButtonClass, ...rest }
-) {
-  const inputEls = Array.from(formEl.querySelectorAll(inputSelector));
-  const submitButton = formEl.querySelector(submitButtonSelector);
+function setEventListeners(formEl, config) {
+  const inputEls = Array.from(formEl.querySelectorAll(config.inputSelector));
+  const submitButton = formEl.querySelector(config.submitButtonSelector);
   toggleButtonState(inputEls, submitButton);
 
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", () => {
-      checkInputValidity(formEl, inputEl, rest);
-      toggleButtonState(inputEls, submitButton, inactiveButtonClass);
+      checkInputValidity(formEl, inputEl, config);
+      toggleButtonState(inputEls, submitButton, config.inactiveButtonClass);
     });
   });
 }
 
-function enableValidation({ formSelector, ...rest }) {
-  const formEls = Array.from(document.querySelectorAll(formSelector));
+function enableValidation(config) {
+  const formEls = Array.from(document.querySelectorAll(config.formSelector));
   formEls.forEach((formEl) => {
     formEl.addEventListener("submit", (e) => {
       e.preventDefault();
     });
 
-    setEventListeners(formEl, rest);
+    setEventListeners(formEl, config);
 
     // look for all inputs of form
     //  loop through all the inputs to see if are all valid
