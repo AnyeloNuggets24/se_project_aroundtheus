@@ -32,11 +32,9 @@ function hasInvalidInput(inputEl) {
 }
 
 function disabledButton(inputEls, submitButton, inactiveButtonClass) {
-  if (hasInvalidInput(inputEls)) {
-    submitButton.classList.add(inactiveButtonClass);
-    submitButton.disabled = true;
-    return;
-  }
+  submitButton.classList.add(inactiveButtonClass);
+  submitButton.disabled = true;
+  return;
 }
 
 function setEventListeners(formEl, options) {
@@ -52,10 +50,8 @@ function setEventListeners(formEl, options) {
 }
 
 function enableButton(inputEls, submitButton, inactiveButtonClass) {
-  if (!hasInvalidInput(inputEls)) {
-    submitButton.classList.remove(inactiveButtonClass);
-    submitButton.disabled = false;
-  }
+  submitButton.classList.remove(inactiveButtonClass);
+  submitButton.disabled = false;
 }
 
 function toggleButtonState(inputEls, submitButton, inactiveButtonClass) {

@@ -101,9 +101,9 @@ function handleEscape(evt) {
   }
 }
 
-const handleModelClose = (evt) => {
+const handleModalClose = (evt) => {
   if (
-    evt.target.classList.contains("modal") ||
+    evt.target.classList.contains("modals") ||
     evt.target.classList.contains("modal__close")
   ) {
     closeModal(evt.currentTarget);
@@ -122,7 +122,7 @@ function getCardElement(data) {
 
   const cardDeleteButton = cardElement.querySelector(".card__delete-button");
   cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove(".card");
+    cardElement.remove();
   });
 
   cardImage.addEventListener("click", () => {
@@ -142,7 +142,7 @@ function getCardElement(data) {
 // make sure to call the handleModalClose on line 104
 
 modals.forEach((modal) => {
-  modal.addEventListener("mousedown", handleModelClose);
+  modal.addEventListener("mousedown", handleModalClose);
 });
 
 // form listener
@@ -156,7 +156,6 @@ profileEditButton.addEventListener("click", () => {
   openModal(profileEditModal);
 });
 
-addCardCloseButton.addEventListener("click", () => closeModal(addCardModal));
 //add new card button
 
 addNewCardButton.addEventListener("click", () => openModal(addCardModal));
