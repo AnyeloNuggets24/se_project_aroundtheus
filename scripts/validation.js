@@ -37,18 +37,6 @@ function disabledButton(inputEls, submitButton, inactiveButtonClass) {
   return;
 }
 
-function setEventListeners(formEl, options) {
-  const { inputSelector, submitButtonSelector } = options;
-  const inputEls = [...formEl.querySelectorAll(inputSelector)];
-  const submitButton = formEl.querySelector(submitButtonSelector);
-  inputEls.forEach((inputEl) => {
-    inputEl.addEventListener("input", (e) => {
-      checkInputValidity(formEl, inputEl, errorMessage, options);
-      toggleButtonState(inputEls, submitButton, options);
-    });
-  });
-}
-
 function enableButton(inputEls, submitButton, inactiveButtonClass) {
   submitButton.classList.remove(inactiveButtonClass);
   submitButton.disabled = false;
@@ -65,7 +53,7 @@ function toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
 function setEventListeners(formEl, config) {
   const inputEls = Array.from(formEl.querySelectorAll(config.inputSelector));
   const submitButton = formEl.querySelector(config.submitButtonSelector);
-  toggleButtonState(inputEls, submitButton);
+  toggleButtonState(inputEls, submitButton, config.inactiveButtonClass);
 
   inputEls.forEach((inputEl) => {
     inputEl.addEventListener("input", () => {

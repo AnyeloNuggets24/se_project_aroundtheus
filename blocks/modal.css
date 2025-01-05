@@ -136,6 +136,10 @@
 .modal__error_visible {
   visibility: visible;
 }
+.modal__button_disabled {
+  background-color: rgba(0, 0, 0, 0.6);
+  cursor: not-allowed;
+}
 
 @media screen and (max-width: 630px) {
   .modal {
