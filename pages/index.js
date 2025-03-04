@@ -1,4 +1,5 @@
 import Card from "../components/Card.js";
+import FormValidator from "../components/FormValidator.js";
 
 const initialCards = [
   {
@@ -86,7 +87,16 @@ const validationSettings = {
 };
 
 const addCardElement = addCardModal.querySelector(".modal__form");
-const editCardElement = profileEditModal.querySelector(".modal__form");
+const editProfileElement = profileEditModal.querySelector(".modal__form");
+
+const addCardValidator = new FormValidator(validationSettings, addCardElement);
+const editProfileValidator = new FormValidator(
+  validationSettings,
+  editProfileElement
+);
+
+addCardValidator.enableValidation();
+editProfileValidator.enableValidation();
 
 function openModal(modal) {
   modal.classList.add("modal_opened");
