@@ -133,7 +133,7 @@ function handleEscape(evt) {
 
 const handleModalClose = (evt) => {
   if (
-    evt.target.classList.contains("modals") ||
+    evt.target.classList.contains("modal") ||
     evt.target.classList.contains("modal__close")
   ) {
     closeModal(evt.currentTarget);
