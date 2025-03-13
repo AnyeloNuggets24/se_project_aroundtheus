@@ -33,10 +33,6 @@ const cardData = {
   link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
 };
 
-const card = new Card(cardData, "#card-template");
-
-card.getView(this);
-
 const cardTemplate = document
   .querySelector("#card-template")
   .content.querySelector(".card");
@@ -104,8 +100,8 @@ function openModal(modal) {
 }
 
 function renderCard(cardData, wrapper) {
-  const cardElement = getCardElement(cardData);
-  wrapper.prepend(cardElement);
+  const cardElement = new Card(cardData, "#card-template", handleImageClick);
+  wrapper.prepend(cardElement.getView());
 }
 
 function handleProfileFormSubmit(evt) {
@@ -140,36 +136,12 @@ const handleModalClose = (evt) => {
   }
 };
 
-function getCardElement(data) {
-  const cardElement = cardTemplate.cloneNode(true);
-  const cardImage = cardElement.querySelector(".card__image");
-  const cardTitle = cardElement.querySelector(".card__title");
-  const likeButton = cardElement.querySelector(".card__like-button");
-
-  likeButton.addEventListener("click", () => {
-    likeButton.classList.toggle("card__like-button_active");
-  });
-
-  const cardDeleteButton = cardElement.querySelector(".card__delete-button");
-  cardDeleteButton.addEventListener("click", () => {
-    cardElement.remove();
-  });
-
-  cardImage.addEventListener("click", () => {
-    imageModalImgEl.src = data.link;
-    imageModalImgEl.alt = data.name;
-    imageModalText.textContent = data.name;
-    openModal(imageModal);
-  });
-
-  cardImage.src = data.link;
-  cardImage.alt = data.name;
-  cardTitle.textContent = data.name;
-
-  return cardElement;
+function handleImageClick(data) {
+  imageModalImgEl.src = data.link;
+  imageModalImgEl.alt = data.name;
+  imageModalText.textContent = data.name;
+  openModal(imageModal);
 }
-
-// make sure to call the handleModalClose on line 104
 
 modals.forEach((modal) => {
   modal.addEventListener("mousedown", handleModalClose);
