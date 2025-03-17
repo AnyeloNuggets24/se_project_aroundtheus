@@ -12,12 +12,11 @@ export default class Card {
     });
 
     // card__like-button
-    const likeButton = this._cardElement
-      .querySelector(".card__like-button")
-      .addEventListener("click", () => {
-        this._handleLikeIcon();
-        console.log(likeButton);
-      });
+    const likeButton = this._cardElement.querySelector(".card__like-button");
+    likeButton.addEventListener("click", () => {
+      this._handleLikeIcon();
+      console.log(likeButton);
+    });
 
     // card__delete-button
     const deleteButton = this._cardElement.querySelector(
