@@ -41,17 +41,25 @@ class FormValidator {
   }
 
   _toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
-    const isFormValid = inputEls.every((inputEl) => inputEl.validity.valid);
-    if (isFormValid) {
-      submitButton.classList.remove(inactiveButtonClass);
-      submitButton.disabled = false;
+    if (!this._hasInvalidInput()) {
+      this._enableButton();
     } else {
-      submitButton.classList.add(inactiveButtonClass);
-      submitButton.disabled = true;
+      this.disableButton();
     }
   }
 
-  _disableButton() {
+  // _toggleButtonState(inputEls, submitButton, inactiveButtonClass) {
+  //   const isFormValid = inputEls.every((inputEl) => inputEl.validity.valid);
+  //   if (isFormValid) {
+  //     submitButton.classList.remove(inactiveButtonClass);
+  //     submitButton.disabled = false;
+  //   } else {
+  //     submitButton.classList.add(inactiveButtonClass);
+  //     submitButton.disabled = true;
+  //   }
+  // }
+
+  disableButton() {
     this._submitButton.classList.add(this._inactiveButtonClass);
     this._submitButton.disabled = true;
   }

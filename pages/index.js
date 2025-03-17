@@ -118,6 +118,8 @@ function handleAddCardFormSubmit(evt) {
   renderCard({ name, link }, cardsWrap);
   closeModal(addCardModal);
   cardForm.reset();
+  // disable right after reseting the
+  addCardValidator.disableButton();
 }
 
 function handleEscape(evt) {
