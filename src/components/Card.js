@@ -50,8 +50,9 @@ export default class Card {
     this._cardImage.src = this.link;
     this._cardImage.alt = this.name;
     this._cardTitle.textContent = this.name;
-    //set eventlistener
+
     this._setEventListeners();
+
     return this._cardElement;
   }
 }
