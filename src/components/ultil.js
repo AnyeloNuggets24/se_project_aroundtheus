@@ -33,5 +33,4 @@ const validationSettings = {
   errorClass: "modal__error_visible",
 };
 
-export { initialCards };
-export { validationSettings };
+export { initialCards, validationSettings };
