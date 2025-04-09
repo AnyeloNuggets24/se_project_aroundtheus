@@ -13,6 +13,6 @@ export default class UserInfo {
 
   setUserInfo({ name, job }) {
     this._nameElement.textContent = name;
-    this._nameElement.textContent = job;
+    this._jobElement.textContent = job;
   }
 }
