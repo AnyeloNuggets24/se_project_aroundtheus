@@ -103,11 +103,21 @@ const cardList = new Section(
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
-  handleFormSubmit: (data) => {
-    cardList.addItem(createCard(data));
+  handleFormSubmit: (form) => {
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData);
+
+    cardList.addItem(
+      createCard({
+        name: data.title,
+        link: data.url,
+      })
+    );
 
     cardForm.reset(); // using the const from above
-    addCardValidator.resetValidation(); // using const from above.
+    // console.log(13231323)
+    // console.log(addCardValidator)
+    // addCardValidator.resetValidation(); // using const from above.
   },
 });
 

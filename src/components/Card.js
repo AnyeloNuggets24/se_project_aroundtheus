@@ -1,3 +1,5 @@
+import { data } from "autoprefixer";
+
 export default class Card {
   constructor({ data, handleImageClick }, cardSelector) {
     this.name = data.name;
@@ -8,33 +10,29 @@ export default class Card {
 
   _setEventListeners() {
     this._cardImage.addEventListener("click", () => {
-      this._handleImageClick(this);
+      this._handleImageClick({ name: this.name, link: this.link });
     });
 
-    // card__like-button
-    const likeButton = this._cardElement.querySelector(".card__like-button");
-    likeButton.addEventListener("click", () => {
+    this._likeButton = this._cardElement.querySelector(".card__like-button");
+    this._likeButton.addEventListener("click", () => {
       this._handleLikeIcon();
-      console.log(likeButton);
     });
 
-    // card__delete-button
-    const deleteButton = this._cardElement.querySelector(
+    this._deleteButton = this._cardElement.querySelector(
       ".card__delete-button"
     );
-    deleteButton.addEventListener("click", () => {
+    this._deleteButton.addEventListener("click", () => {
       this._handleDeleteCard();
-      console.log(likeButton);
     });
   }
 
   _handleDeleteCard() {
     this._cardElement.remove();
+    this._cardElement = null; // Optional: helps prevent memory leaks
   }
+
   _handleLikeIcon() {
-    this._cardElement
-      .querySelector(".card__like-button")
-      .classList.toggle("card__like-button_active");
+    this._likeButton.classList.toggle("card__like-button_active");
   }
 
   getView() {
@@ -42,7 +40,6 @@ export default class Card {
       .querySelector(this._cardSelector)
       .content.querySelector(".card")
       .cloneNode(true);
-    console.log(this._cardElement);
 
     this._cardImage = this._cardElement.querySelector(".card__image");
     this._cardTitle = this._cardElement.querySelector(".card__title");

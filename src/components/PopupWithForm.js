@@ -1,7 +1,7 @@
 import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
-constructor({popupSelector, handleFormSubmit}) {
+  constructor({ popupSelector, handleFormSubmit }) {
     super({ popupSelector });
     this._modalForm = this._popupElement.querySelector(".modal__form");
     this._handleFormSubmit = handleFormSubmit;
@@ -10,6 +10,11 @@ constructor({popupSelector, handleFormSubmit}) {
   close() {
     this._modalForm.reset();
     super.close();
+  }
+
+  open() {
+    this._popupElement.classList.add("modal_open");
+    document.addEventListener("keydown", this._handleEscClose);
   }
 
   setEventListeners() {
