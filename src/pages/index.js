@@ -29,8 +29,8 @@ const addNewCardButton = document.querySelector(".profile__add-button");
 // Form Data
 
 const userInfo = new UserInfo({
-  nameSelector: "#profile__title",
-  jobSelector: "#profile__description",
+  profileName: ".profile__title",
+  profileJob: ".profile__description",
 });
 
 const nameInput = profileEditForm.querySelector(".modal__input_type_name");
@@ -69,6 +69,8 @@ const profileEditPopup = new PopupWithForm({
   },
 });
 
+console.log(profileEditPopup);
+
 profileEditPopup.setEventListeners();
 
 // function handleProfileFormSubmit(evt) {
@@ -78,12 +80,15 @@ profileEditPopup.setEventListeners();
 //   profileEditModal.close();
 // }
 
+const imageModalImPopup = new PopupWithImage("#image-modal");
+imageModalImPopup.setEventListeners();
+
 const createCard = (data) => {
   const card = new Card(
     {
       data,
       handleImageClick: () => {
-        imageModal.open(data);
+        imageModalImPopup.open(data);
       },
     },
     "#card-template"
@@ -104,9 +109,6 @@ const cardList = new Section(
 const newCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (form) => {
-    const formData = new FormData(form);
-    const data = Object.fromEntries(formData);
-
     cardList.addItem(
       createCard({
         name: data.title,
@@ -115,9 +117,9 @@ const newCardPopup = new PopupWithForm({
     );
 
     cardForm.reset(); // using the const from above
-    // console.log(13231323)
-    // console.log(addCardValidator)
-    // addCardValidator.resetValidation(); // using const from above.
+    console.log(13231323);
+    console.log(addCardValidator);
+    addCardValidator.resetValidation(); // using const from above.
   },
 });
 
@@ -146,11 +148,11 @@ function handleImageClick(data) {
 // form listener
 
 profileEditButton.addEventListener("click", () => {
-  nameInput.value = profileTitle.textContent;
-  jobInput.value = profileDescription.textContent;
-  profileEditModal.open();
+  const { name, job } = userInfo.getUserInfo();
+  nameInput.value = name;
+  jobInput.value = job;
+  profileEditPopup.open();
 });
-
 //add new card button
 
 addNewCardButton.addEventListener("click", () => {
