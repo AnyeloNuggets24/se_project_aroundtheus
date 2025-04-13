@@ -69,8 +69,6 @@ const profileEditPopup = new PopupWithForm({
   },
 });
 
-console.log(profileEditPopup);
-
 profileEditPopup.setEventListeners();
 
 // function handleProfileFormSubmit(evt) {
@@ -108,7 +106,7 @@ const cardList = new Section(
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
-  handleFormSubmit: (form) => {
+  handleFormSubmit: (data) => {
     cardList.addItem(
       createCard({
         name: data.title,

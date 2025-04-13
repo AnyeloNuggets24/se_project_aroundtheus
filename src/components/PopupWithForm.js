@@ -11,7 +11,8 @@ export default class PopupWithForm extends Popup {
     super.setEventListeners(); // don't forget base close logic
     this._modalForm.addEventListener("submit", (evt) => {
       evt.preventDefault();
-      this._handleFormSubmit(this._modalForm); // pass actual form element
+      const inputValues = this._getInputValues(); // get form values here
+      this._handleFormSubmit(inputValues); // pass them instead of the form
       this.close();
     });
   }
