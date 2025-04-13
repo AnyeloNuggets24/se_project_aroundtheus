@@ -65,7 +65,10 @@ function renderCard(cardData, wrapper) {
 const profileEditPopup = new PopupWithForm({
   popupSelector: "#profile__edit-modal",
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo(data);
+    userInfo.setUserInfo({
+      name: data.name,
+      job: data.description,
+    });
   },
 });
 
@@ -146,9 +149,9 @@ function handleImageClick(data) {
 // form listener
 
 profileEditButton.addEventListener("click", () => {
-  const { name, job } = userInfo.getUserInfo();
-  nameInput.value = name;
-  jobInput.value = job;
+  const currentUserInfo = userInfo.getUserInfo();
+  nameInput.value = currentUserInfo.name;
+  jobInput.value = currentUserInfo.job;
   profileEditPopup.open();
 });
 //add new card button
