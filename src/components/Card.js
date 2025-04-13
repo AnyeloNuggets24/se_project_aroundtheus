@@ -1,5 +1,3 @@
-import { data } from "autoprefixer";
-
 export default class Card {
   constructor({ data, handleImageClick }, cardSelector) {
     this.name = data.name;
