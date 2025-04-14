@@ -23,9 +23,6 @@ export default class PopupWithForm extends Popup {
   }
 
   // Close and reset form
-  close() {
-    super.close();
-  }
 
   // Handle submit
   // create a listenner for the submit event
