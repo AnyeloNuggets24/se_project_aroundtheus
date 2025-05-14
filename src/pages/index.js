@@ -1,10 +1,11 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
-import { initialCards, validationSettings } from "../utils/Constants.js";
+import { validationSettings } from "../utils/Constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
+import { api } from "../components/Api.js";
 
 import Section from "../components/Section.js";
 
@@ -96,15 +97,26 @@ const createCard = (data) => {
   return card.getView();
 };
 
+
+
 const cardList = new Section(
   {
-    data: initialCards,
     renderer: (data) => {
       cardList.addItem(createCard(data));
     },
   },
   ".cards__list"
 );
+
+api
+  .getInitialCards()
+  .then((data) => {
+    console.log("Got initial set of cards!");
+    cardList.renderItems(data);
+  })
+  .catch((err) => {
+    console.error(err);
+  });
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
@@ -159,5 +171,19 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
-cardList.renderItems(initialCards);
 // initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
+
+fetch("https://around-api.en.tripleten-services.com/v1/cards", {
+  headers: {
+    authorization: "a3ba7fe6-d8d6-4fc9-a80b-33e779685270",
+  },
+}).then((res) => res.json());
+
+api
+  .getUserInfo()
+  .then((userData) => {
+    console.log("User Info:", userData);
+  })
+  .catch((err) => {
+    console.error(err);
+  });

@@ -24,7 +24,7 @@
             class="profile__image"
           />
           <div class="profile__info">
-            <h1 class="profile__title">anyelo</h1>
+            <h1 class="profile__title">Jacques Cousteau</h1>
             <button
               class="profile__edit-button"
               id="profile__edit-button"
@@ -145,5 +145,16 @@
         </div>
       </li>
     </template>
+
+    <!-- Creating a popup for deleting a card -->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <p class="modal__heading">Are you sure?</p>
+        <form class="modal__form" id="delete-card-form">
+          <button class="modal__button" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>
