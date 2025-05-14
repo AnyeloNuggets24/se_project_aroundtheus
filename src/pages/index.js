@@ -97,8 +97,6 @@ const createCard = (data) => {
   return card.getView();
 };
 
-
-
 const cardList = new Section(
   {
     renderer: (data) => {
@@ -187,3 +185,21 @@ api
   .catch((err) => {
     console.error(err);
   });
+
+const addCardPopup = new PopupWithForm({
+  popupSelector: "#add-card-modal",
+  handleFormSubmit: (data) => {
+    api
+      .addCard({
+        name: data.title,
+        link: data.url,
+      })
+      .then((res) => {
+        cardList.addItem(createCard(res));
+        cardForm.reset();
+        addCardValidator.resetValidation();
+      });
+  },
+});
+
+addCardPopup.setEventListeners();
