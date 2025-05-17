@@ -1,7 +1,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
-import { validationSettings } from "../utils/Constants.js";
+import { validationSettings, } from "../utils/Constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
@@ -84,12 +84,27 @@ profileEditPopup.setEventListeners();
 const imageModalImPopup = new PopupWithImage("#image-modal");
 imageModalImPopup.setEventListeners();
 
+let selectedCardId = null;
+
+const confirmDeleteCard = new PopupWithForm({
+  popupSelector: "#delete-card-modal",
+  handleFormSubmit: () => {
+    api.deleteCard(selectedCardId).then((r) => console.log("dleteed", r));
+  },
+});
+confirmDeleteCard.setEventListeners();
+
 const createCard = (data) => {
   const card = new Card(
     {
       data,
       handleImageClick: () => {
         imageModalImPopup.open(data);
+      },
+      handleDelete: () => {
+        selectedCardId = data._id;
+        confirmDeleteCard.open();
+        confirmDeleteCard.afterSubmit(() => card.remove())
       },
     },
     "#card-template"
@@ -115,38 +130,6 @@ api
   .catch((err) => {
     console.error(err);
   });
-
-const newCardPopup = new PopupWithForm({
-  popupSelector: "#add-card-modal",
-  handleFormSubmit: (data) => {
-    cardList.addItem(
-      createCard({
-        name: data.title,
-        link: data.url,
-      })
-    );
-
-    cardForm.reset(); // using the const from above
-    console.log(13231323);
-    console.log(addCardValidator);
-    addCardValidator.resetValidation(); // using const from above.
-  },
-});
-
-newCardPopup.setEventListeners();
-
-// function handleAddCardFormSubmit(evt) {
-//   evt.preventDefault();
-//   const name = cardTitleInput.value;
-//   const link = cardUrlInput.value;
-//   renderCard({ name, link }, cardsWrap);
-//   addCardModal.close();
-//   cardForm.reset();
-//   // disable right after reseting the
-//   addCardValidator.disableButton();
-// }
-
-// replace this code to use the popupwithImage class
 
 function handleImageClick(data) {
   imageModalImgEl.src = data.link;
@@ -186,7 +169,7 @@ api
     console.error(err);
   });
 
-const addCardPopup = new PopupWithForm({
+const newCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
     api
@@ -202,4 +185,4 @@ const addCardPopup = new PopupWithForm({
   },
 });
 
-addCardPopup.setEventListeners();
+newCardPopup.setEventListeners();

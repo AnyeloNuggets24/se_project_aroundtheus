@@ -18,11 +18,30 @@
 
       <main class="content">
         <section class="profile page__section" id="profile">
-          <img
-            src="<%=require('./images/Avatar.png')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__avatar_container">
+            <!-- <img
+              src="<%=require('./images/Avatar.png')%>"
+              alt="Avatar"
+              class="profile__image"
+            /> -->
+            <!-- <button
+              class="profile__avatar-button"
+              id="profile__avatar-button"
+              type="button"
+            > -->
+              <!-- insert image here -->
+              <img
+              src="<%=require('./images/Edit-icon.svg')%>"
+              alt="Avatar"
+              class="profile__edit"
+            />
+              <img
+                src="<%=require('./images/Avatar.png')%>"
+                alt="Avatar"
+                class="profile__image"
+              />
+            <!-- </button> -->
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button

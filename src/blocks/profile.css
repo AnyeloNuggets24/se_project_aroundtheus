@@ -61,11 +61,37 @@
 
 .profile__image {
   border-radius: 50%;
-  height: 120px;
-  width: 120px;
   object-fit: cover;
   background-position: center;
   margin-right: 24px;
+}
+
+.profile__image:hover {
+  background: transparent url(../images/Edit-icon.svg) center no-repeat;
+}
+
+.profile__avatar_container {
+  position: relative;
+
+  /* height: 20px;
+  width: 20px; */
+}
+.profile__edit {
+  visibility: hidden;
+}
+
+.profile__avatar_container:hover .profile__edit {
+  visibility: block;
+}
+
+.profile__avatar-button {
+  /* background: transparent url(../images/Edit-icon.svg) center no-repeat; */
+  background-size: 26px 26px;
+  /* position: relative; */
+}
+
+.profile__avatar-button:hover {
+  visibility: visible;
 }
 
 @media screen and (max-width: 680px) {

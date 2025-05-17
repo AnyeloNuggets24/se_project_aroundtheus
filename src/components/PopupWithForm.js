@@ -15,11 +15,20 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    this._modalForm.addEventListener("submit", () => {
+    this._modalForm.addEventListener("submit", (e) => {
+      e.preventDefault()
+
       this._handleFormSubmit(this._getInputValues()); // pass them instead of the form
+      if(this._afterSubmit) {
+        this._afterSubmit();
+      }
       this.close();
     });
     super.setEventListeners(); // don't forget base close logic
+  }
+
+  afterSubmit(fn) {
+    this._afterSubmit = fn;
   }
 
   // Close and reset form
