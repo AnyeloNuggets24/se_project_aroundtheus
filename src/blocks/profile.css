@@ -63,35 +63,46 @@
   border-radius: 50%;
   object-fit: cover;
   background-position: center;
-  margin-right: 24px;
 }
 
-.profile__image:hover {
+/* .profile__image:hover {
   background: transparent url(../images/Edit-icon.svg) center no-repeat;
-}
+} */
 
 .profile__avatar_container {
   position: relative;
+  margin-right: 24px;
 
   /* height: 20px;
   width: 20px; */
 }
 .profile__edit {
   visibility: hidden;
+  position: absolute;
 }
 
-.profile__avatar_container:hover .profile__edit {
-  visibility: block;
-}
+/*.profile__avatar_container:hover .profile__edit {
+  visibility: visible;
+}*/
 
 .profile__avatar-button {
-  /* background: transparent url(../images/Edit-icon.svg) center no-repeat; */
-  background-size: 26px 26px;
-  /* position: relative; */
+  background: rgba(0, 0, 0, 0.8) url("../images/Edit-icon.svg") center no-repeat;
+  height: 120px;
+  width: 120px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+  color: white;
+  z-index: 1000;
 }
 
 .profile__avatar-button:hover {
   visibility: visible;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 680px) {
