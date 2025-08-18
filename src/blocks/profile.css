@@ -86,7 +86,7 @@
 }*/
 
 .profile__avatar-button {
-  background: rgba(0, 0, 0, 0.8) url("../images/Edit-icon.svg") center no-repeat;
+  background: rgba(0, 0, 0, 0.8) url("../images/AvatarPen.png") center no-repeat;
   height: 120px;
   width: 120px;
   border: none;
@@ -100,7 +100,7 @@
   z-index: 1000;
 }
 
-.profile__avatar-button:hover {
+.profile__avatar_container:hover .profile__avatar-button {
   visibility: visible;
   cursor: pointer;
 }

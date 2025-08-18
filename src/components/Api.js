@@ -84,28 +84,3 @@ export const api = new Api({
     "Content-Type": "application/json",
   },
 });
-
-// Sample card data
-const userInfo = [
-  {
-    createdAt: "2023-07-05T08:10:57.741Z",
-    isLiked: false,
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/yosemite.jpg",
-    name: "Yosemite Valley",
-    owner: "e20537ed11237f86bbb20ccb",
-    _id: "5d1f0611d321eb4bdcd707dd",
-  },
-  {
-    createdAt: "2023-07-05T08:11:58.324Z",
-    isLiked: false,
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/around-project/lake-louise.jpg",
-    name: "Lake Louise",
-    owner: "e20537ed11237f86bbb20ccb",
-    _id: "5d1f064ed321eb4bdcd707de",
-  },
-];
-
-const userInfoJSON = JSON.stringify(userInfo);
-
-console.log(userInfoJSON);
-console.log(typeof userInfoJSON);

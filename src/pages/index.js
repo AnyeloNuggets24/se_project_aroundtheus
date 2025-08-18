@@ -1,7 +1,7 @@
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import "../pages/index.css";
-import { validationSettings, } from "../utils/Constants.js";
+import { validationSettings } from "../utils/Constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import UserInfo from "../components/UserInfo.js";
@@ -31,6 +31,7 @@ const addNewCardButton = document.querySelector(".profile__add-button");
 const userInfo = new UserInfo({
   profileName: ".profile__title",
   profileJob: ".profile__description",
+  profileAvatar: ".profile__image",
 });
 
 const nameInput = profileEditForm.querySelector(".modal__input_type_name");
@@ -65,10 +66,18 @@ function renderCard(cardData, wrapper) {
 const profileEditPopup = new PopupWithForm({
   popupSelector: "#profile__edit-modal",
   handleFormSubmit: (data) => {
-    userInfo.setUserInfo({
-      name: data.name,
-      job: data.description,
-    });
+    console.log(data);
+    return api
+      .setUserInfo({
+        name: data.name,
+        about: data.description, // use "job" because that’s your input name
+      })
+      .then((res) => {
+        userInfo.setUserInfo({
+          name: res.name,
+          job: res.about, // match your UserInfo fields
+        });
+      });
   },
 });
 
@@ -104,7 +113,7 @@ const createCard = (data) => {
       handleDelete: () => {
         selectedCardId = data._id;
         confirmDeleteCard.open();
-        confirmDeleteCard.afterSubmit(() => card.remove())
+        confirmDeleteCard.afterSubmit(() => card.remove());
       },
     },
     "#card-template"
@@ -152,6 +161,25 @@ addNewCardButton.addEventListener("click", () => {
   newCardPopup.open();
 });
 
+//  Avatar profile popup  8/16/2025 //
+
+const avatarButton = document.querySelector("#profile__avatar-button");
+
+const avatarPopup = new PopupWithForm({
+  popupSelector: "#update-avatar-modal",
+  handleFormSubmit: (data) => {
+    return api.updateAvatar({ avatar: data.avatar }).then((res) => {
+      userInfo.setUserInfo({ avatar: res.avatar });
+    });
+  },
+});
+avatarPopup.setEventListeners();
+
+// open popup when avatar button is clicked
+avatarButton.addEventListener("click", () => {
+  avatarPopup.open();
+});
+
 // initialCards.forEach((cardData) => renderCard(cardData, cardsWrap));
 
 fetch("https://around-api.en.tripleten-services.com/v1/cards", {
@@ -172,8 +200,9 @@ api
 const newCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
   handleFormSubmit: (data) => {
-    api
+    return api
       .addCard({
+        //  return the promise
         name: data.title,
         link: data.url,
       })
@@ -184,5 +213,7 @@ const newCardPopup = new PopupWithForm({
       });
   },
 });
+
+newCardPopup.setEventListeners();
 
 newCardPopup.setEventListeners();

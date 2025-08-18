@@ -28,9 +28,9 @@
               class="profile__avatar-button"
               id="profile__avatar-button"
               type="button"
-            >
-              <!-- insert image here -->
-            </button>
+            ></button>
+
+            <!-- insert image here -->
             <img
               src="<%=require('./images/Avatar.png')%>"
               alt="Avatar"
@@ -145,6 +145,27 @@
           >
             Save
           </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="modal" id="update-avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="update-avatar-form" name="update-avatar">
+          <label class="modal__label">
+            <input
+              class="modal__input modal__input_type_url"
+              name="avatar"
+              id="update-avatar-input"
+              placeholder="Image link"
+              type="url"
+              required
+            />
+            <span class="modal__error" id="update-avatar-input-error"></span>
+          </label>
+          <button class="modal__button" type="submit">Save</button>
         </form>
       </div>
     </div>
