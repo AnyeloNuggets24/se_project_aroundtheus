@@ -11,6 +11,10 @@ class Api {
     return Promise.reject(`Error: ${res.status}`);
   }
 
+  getAppInfo() {
+    return Promise.all([this.getInitialCards(), this.getUserInfo()]);
+  }
+
   getUserInfo() {
     return fetch(`${this._baseUrl}/users/me`, {
       headers: this._headers,
@@ -77,10 +81,4 @@ class Api {
   }
 }
 
-export const api = new Api({
-  baseUrl: "https://around-api.en.tripleten-services.com/v1",
-  headers: {
-    authorization: "a3ba7fe6-d8d6-4fc9-a80b-33e779685270",
-    "Content-Type": "application/json",
-  },
-});
+export default Api;
