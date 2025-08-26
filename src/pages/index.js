@@ -76,6 +76,9 @@ const profileEditPopup = new PopupWithForm({
           name: res.name,
           job: res.about, // match your UserInfo fields
         });
+      })
+      .catch((err) => {
+        console.error("Failed to load Profile:", err);
       });
   },
 });
@@ -92,10 +95,20 @@ let selectedCardId = null;
 const confirmDeleteCard = new PopupWithForm({
   popupSelector: "#delete-card-modal",
   handleFormSubmit: () => {
-    api.deleteCard(selectedCardId).then((res) => console.log("deleted", res));
+    return api
+      .deleteCard(selectedCardId)
+      .then((res) => {
+        console.log("Deleted card:", res);
+      })
+      .catch((err) => {
+        console.error("Failed to delete card:", err);
+      });
   },
 });
+
 confirmDeleteCard.setEventListeners();
+
+// createCards //
 
 const createCard = (data) => {
   const card = new Card(
@@ -109,6 +122,7 @@ const createCard = (data) => {
         confirmDeleteCard.open();
         confirmDeleteCard.afterSubmit(() => card.remove());
       },
+      handleLikeClick,
     },
     "#card-template"
   );
@@ -123,6 +137,18 @@ const cardList = new Section(
   },
   ".cards__list"
 );
+
+const handleLikeClick = (cardId, isLiked, cardInstance) => {
+  const likeAction = isLiked ? api.unlikeCard(cardId) : api.likeCard(cardId);
+
+  likeAction
+    .then((res) => {
+      cardInstance.updateLikes(res.likes); // updated likes
+    })
+    .catch((err) => {
+      console.error("Failed to update like:", err);
+    });
+};
 
 // form listener
 
@@ -145,26 +171,27 @@ const avatarButton = document.querySelector("#profile__avatar-button");
 const avatarPopup = new PopupWithForm({
   popupSelector: "#update-avatar-modal",
   handleFormSubmit: (data) => {
-    return api.updateAvatar({ avatar: data.avatar }).then((res) => {
-      userInfo.setUserInfo({ avatar: res.avatar });
-    });
+    return api
+      .updateAvatar({ avatar: data.avatar })
+      .then((res) => {
+        userInfo.setUserInfo({ avatar: res.avatar });
+      })
+      .catch((err) => {
+        console.error("Failed to update avatar:", err);
+      });
   },
 });
 avatarPopup.setEventListeners();
+
+const avatarForm = document.forms["update-avatar-form"];
+
+const avatarValidator = new FormValidator(validationSettings, avatarForm);
+avatarValidator.enableValidation();
 
 // open popup when avatar button is clicked
 avatarButton.addEventListener("click", () => {
   avatarPopup.open();
 });
-
-api
-  .getUserInfo()
-  .then((userData) => {
-    console.log("User Info:", userData);
-  })
-  .catch((err) => {
-    console.error(err);
-  });
 
 const newCardPopup = new PopupWithForm({
   popupSelector: "#add-card-modal",
@@ -179,11 +206,12 @@ const newCardPopup = new PopupWithForm({
         cardList.addItem(createCard(res));
         cardForm.reset();
         addCardValidator.resetValidation();
+      })
+      .catch((err) => {
+        console.error("Failed to add card:", err);
       });
   },
 });
-
-newCardPopup.setEventListeners();
 
 newCardPopup.setEventListeners();
 
@@ -195,4 +223,4 @@ api
     userInfo.setUserInfo(userData);
     cardList.renderItems(cardsArray.reverse());
   })
-  .catch((err) => console.log(err));
+  .catch((err) => console.log("Faild to fetch initial app data:", err));

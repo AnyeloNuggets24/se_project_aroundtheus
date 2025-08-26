@@ -13,6 +13,10 @@ export default class UserInfo {
     };
   }
 
+  setAvatar(avatar) {
+    this._avatarElement.src = avatar;
+  }
+
   setUserInfo({ name, job, avatar }) {
     this._nameElement.textContent = name;
     this._jobElement.textContent = job;
