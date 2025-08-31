@@ -69,12 +69,13 @@ const profileEditPopup = new PopupWithForm({
     return api
       .setUserInfo({
         name: data.name,
-        about: data.description, // use "job" because that’s your input name
+        about: data.job, // use "job" because that’s your input name
       })
       .then((res) => {
         userInfo.setUserInfo({
           name: res.name,
           job: res.about, // match your UserInfo fields
+          avatar: res.avatar,
         });
       })
       .catch((err) => {
@@ -143,7 +144,7 @@ const handleLikeClick = (cardId, isLiked, cardInstance) => {
 
   likeAction
     .then((res) => {
-      cardInstance.updateLikes(res.likes); // updated likes
+      cardInstance.updateLikeStatus(res.isLiked); // updated likes
     })
     .catch((err) => {
       console.error("Failed to update like:", err);
@@ -175,6 +176,8 @@ const avatarPopup = new PopupWithForm({
       .updateAvatar({ avatar: data.avatar })
       .then((res) => {
         userInfo.setUserInfo({ avatar: res.avatar });
+        avatarPopup.resetForm();
+        avatarPopup.disableSubmitButton();
       })
       .catch((err) => {
         console.error("Failed to update avatar:", err);
@@ -220,7 +223,7 @@ api
   .then(([cardsArray, userData]) => {
     userId = userData._id;
 
-    userInfo.setUserInfo(userData);
+    userInfo.setUserInfo({ ...userData, job: userData.about });
     cardList.renderItems(cardsArray.reverse());
   })
   .catch((err) => console.log("Faild to fetch initial app data:", err));

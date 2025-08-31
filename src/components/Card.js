@@ -10,7 +10,7 @@ export default class Card {
     this._handleLikeClick = handleLikeClick;
     this._cardSelector = cardSelector;
 
-    this._likes = data.likes || [];
+    this._isLiked = data.isLiked;
     this._ownerId = data.owner._id;
   }
 
@@ -22,14 +22,11 @@ export default class Card {
   }
 
   isLiked() {
-    return (
-      Array.isArray(this._likes) &&
-      this._likes.some((like) => like._id === this._userId)
-    );
+    return this._isLiked;
   }
 
-  updateLikes(newLikes) {
-    this._likes = newLikes;
+  updateLikeStatus(isLiked) {
+    this._isLiked = isLiked;
     this._updateLikeState();
   }
 
