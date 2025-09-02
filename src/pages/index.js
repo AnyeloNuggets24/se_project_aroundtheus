@@ -69,7 +69,7 @@ const profileEditPopup = new PopupWithForm({
     return api
       .setUserInfo({
         name: data.name,
-        about: data.job, // use "job" because that’s your input name
+        about: data.description, // use "job" because that’s your input name
       })
       .then((res) => {
         userInfo.setUserInfo({
@@ -176,8 +176,6 @@ const avatarPopup = new PopupWithForm({
       .updateAvatar({ avatar: data.avatar })
       .then((res) => {
         userInfo.setUserInfo({ avatar: res.avatar });
-        avatarPopup.resetForm();
-        avatarPopup.disableSubmitButton();
       })
       .catch((err) => {
         console.error("Failed to update avatar:", err);
