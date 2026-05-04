@@ -69,7 +69,7 @@ const profileEditPopup = new PopupWithForm({
     return api
       .setUserInfo({
         name: data.name,
-        about: data.description, // use "job" because that’s your input name
+        about: data.description, // use "description" because that’s your input name
       })
       .then((res) => {
         userInfo.setUserInfo({
