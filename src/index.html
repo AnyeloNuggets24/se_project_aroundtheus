@@ -18,11 +18,25 @@
 
       <main class="content">
         <section class="profile page__section" id="profile">
-          <img
-            src="<%=require('./images/Avatar.png')%>"
-            alt="Avatar"
-            class="profile__image"
-          />
+          <div class="profile__avatar_container">
+            <!-- <img
+              src="<%=require('./images/Avatar.png')%>"
+              alt="Avatar"
+              class="profile__image"
+            /> -->
+            <button
+              class="profile__avatar-button"
+              id="profile__avatar-button"
+              type="button"
+            ></button>
+
+            <!-- insert image here -->
+            <img
+              src="<%=require('./images/Avatar.png')%>"
+              alt="Avatar"
+              class="profile__image"
+            />
+          </div>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -135,6 +149,27 @@
       </div>
     </div>
 
+    <div class="modal" id="update-avatar-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <p class="modal__heading">Change profile picture</p>
+        <form class="modal__form" id="update-avatar-form" name="update-avatar">
+          <label class="modal__label">
+            <input
+              class="modal__input modal__input_type_url"
+              name="avatar"
+              id="update-avatar-input"
+              placeholder="Image link"
+              type="url"
+              required
+            />
+            <span class="modal__error" id="update-avatar-input-error"></span>
+          </label>
+          <button class="modal__button" type="submit" disabled>Save</button>
+        </form>
+      </div>
+    </div>
+
     <template id="card-template">
       <li class="card">
         <button class="card__delete-button" type="button"></button>
@@ -145,5 +180,16 @@
         </div>
       </li>
     </template>
+
+    <!-- Creating a popup for deleting a card -->
+    <div class="modal" id="delete-card-modal">
+      <div class="modal__container">
+        <button class="modal__close" type="button"></button>
+        <p class="modal__heading">Are you sure?</p>
+        <form class="modal__form" id="delete-card-form">
+          <button class="modal__button" type="submit">Yes</button>
+        </form>
+      </div>
+    </div>
   </body>
 </html>

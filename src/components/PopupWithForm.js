@@ -6,6 +6,8 @@ export default class PopupWithForm extends Popup {
     this._modalForm = this._popupElement.querySelector(".modal__form");
     this._inputlist = this._modalForm.querySelectorAll(".modal__input");
     this._handleFormSubmit = handleFormSubmit;
+    this._submitButton = this._modalForm.querySelector(".modal__button");
+    this._initialButtonText = this._submitButton.textContent;
   }
 
   _getInputValues() {
@@ -15,37 +17,40 @@ export default class PopupWithForm extends Popup {
   }
 
   setEventListeners() {
-    this._modalForm.addEventListener("submit", () => {
-      this._handleFormSubmit(this._getInputValues()); // pass them instead of the form
-      this.close();
+    this._modalForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      // Show "Saving..." while submitting
+      this.renderLoading(true);
+
+      const returnValue = this._handleFormSubmit(this._getInputValues());
+
+      if (returnValue && typeof returnValue.then === "function") {
+        returnValue
+          .then(() => {
+            if (this._afterSubmit) this._afterSubmit();
+            this.close();
+          })
+          .finally(() => this.renderLoading(false));
+      } else {
+        if (this._afterSubmit) this._afterSubmit();
+        this.close();
+        this.renderLoading(false);
+      }
     });
-    super.setEventListeners(); // don't forget base close logic
+
+    super.setEventListeners(); // base close logic
   }
 
-  // Close and reset form
+  renderLoading(isLoading) {
+    if (isLoading) {
+      this._submitButton.textContent = "Saving...";
+    } else {
+      this._submitButton.textContent = this._initialButtonText;
+    }
+  }
 
-  // Handle submit
-  // create a listenner for the submit event
-  // After submiting form  we close our pop
-
-  // close() {
-  //   this._modalForm.reset();
-  //   super.close();
-  // }
-
-  // open() {
-  //   this._popupElement.classList.add("modal_open");
-  //   document.addEventListener("keydown", this._handleEscClose);
-  // }
-
-  // setEventListeners() {
-  //   super.setEventListeners();
-  //   this._modalForm.addEventListener("submit", (evt) => {
-  //     evt.preventDefault();
-  //     this._handleFormSubmit(this._modalForm);
-  //     this.close();
-  //   });
-  // }
+  afterSubmit(fn) {
+    this._afterSubmit = fn;
+  }
 }
-
-// index.js

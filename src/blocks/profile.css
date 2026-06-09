@@ -61,11 +61,50 @@
 
 .profile__image {
   border-radius: 50%;
-  height: 120px;
-  width: 120px;
   object-fit: cover;
   background-position: center;
+  height: 120px;
+  width: 120px;
+}
+
+/* .profile__image:hover {
+  background: transparent url(../images/Edit-icon.svg) center no-repeat;
+} */
+
+.profile__avatar_container {
+  position: relative;
   margin-right: 24px;
+
+  /* height: 20px;
+  width: 20px; */
+}
+.profile__edit {
+  visibility: hidden;
+  position: absolute;
+}
+
+/*.profile__avatar_container:hover .profile__edit {
+  visibility: visible;
+}*/
+
+.profile__avatar-button {
+  background: rgba(0, 0, 0, 0.8) url("../images/AvatarPen.png") center no-repeat;
+  height: 120px;
+  width: 120px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: absolute;
+  visibility: hidden;
+  color: white;
+  z-index: 1000;
+}
+
+.profile__avatar_container:hover .profile__avatar-button {
+  visibility: visible;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 680px) {
